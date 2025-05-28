@@ -4,6 +4,8 @@ project(tree_hugger)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+find_package(raylib)
+
 include_directories(include)
 
 set(TREE_SOURCES
@@ -33,6 +35,7 @@ target_sources(stack
 target_include_directories(stack
  PRIVATE
  ${INCLUDE}
+ ${raylib_INCLUDE_DIRS}
  )
 
 set(TREE_HUGGER_SOURCES
@@ -48,6 +51,7 @@ target_include_directories(tree_hugger
  PRIVATE
  ${INCLUDE}
  include
+ ${raylib_INCLUDE_DIRS}
 )
 target_link_libraries(tree_hugger
   tree
@@ -66,6 +70,7 @@ target_include_directories(main
  PRIVATE
  ${INCLUDE}
  include
+ ${raylib_INCLUDE_DIRS}
 )
 target_link_libraries(main
   tree_hugger
