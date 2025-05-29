@@ -4,14 +4,6 @@
 #include "stack.h"
 #include "tree_hugger.h"
 
-void visualize_tree(Node* tree, float layer) {
-    Stack* stack = create_stack();
-    TreePos tree_pos = get_tree_pos(tree, stack, layer, 0.0);
-    // stack is ready with all points
-    // lets print it!
-    stack_print(stack);
-}
-
 int main(void)
 {
     int root_data = 10;
@@ -32,7 +24,9 @@ int main(void)
     // 10, 2, 1, 5, 17
     tree_print_preorder(tree);
     printf("---------------------\n");
-    visualize_tree(tree, 0);
+    float max_radius = 0.0f;
+    TreeMap* tree_map = calc_tree_poses(tree, 0, &max_radius);
+    print_hash_map(tree_map);
 
     return 0;
 }
