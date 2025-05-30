@@ -31,14 +31,16 @@ void stack_push(Stack *stack, Node* value)
     stack->top = new_element;
 }
 
-StackElement* stack_pop(Stack *stack)
+Node* stack_pop(Stack *stack)
 {
     if (is_empty(stack)) {
         return NULL;
     }
     StackElement *remove = stack->top;
     stack->top = remove->prev;
-    return remove;
+    Node* node = remove->value;
+    free(remove);
+    return node;
 }
 
 void stack_print(Stack* stack)

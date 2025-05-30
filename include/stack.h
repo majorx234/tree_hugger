@@ -16,7 +16,7 @@ StackElement* create_stack_element(Node* node);
 Stack* create_stack();
 bool is_empty(Stack *stack);
 void stack_push(Stack *stack, Node* node);
-StackElement* stack_pop(Stack *stack);
+Node* stack_pop(Stack *stack);
 void stack_print(Stack* stack);
 
 #endif // STACK_H_
