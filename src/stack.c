@@ -4,7 +4,7 @@
 #include "stack.h"
 #include "raylib.h"
 
-StackElement* create_stack_element(Vector3 value)
+StackElement* create_stack_element(Node* value)
 {
     StackElement *new_stack_element = malloc(sizeof(StackElement));
     new_stack_element->value = value;
@@ -24,7 +24,7 @@ bool is_empty(Stack *stack)
     return stack->top == NULL ? true : false;
 }
 
-void stack_push(Stack *stack, Vector3 value)
+void stack_push(Stack *stack, Node* value)
 {
     StackElement *new_element = create_stack_element(value);
     new_element->prev = stack->top;
@@ -45,7 +45,7 @@ void stack_print(Stack* stack)
 {
     StackElement* tmp = stack->top;
     while(tmp !=NULL) {
-        printf("(%f, %f, %f)\n", tmp->value.x, tmp->value.y, tmp->value.z);
+        printf("(%d)\n", tmp->value->data);
         tmp = tmp->prev;
     }
 }
