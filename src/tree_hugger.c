@@ -103,6 +103,36 @@ Edge *get_edges(Node *tree) {
   return edges;
 }
 
+Edge * get_edges_iter(Node *tree) {
+  Edge* edges = NULL;
+  if(tree) {
+    Stack* stack = create_stack();
+    stack_push(stack, tree);
+    while(!is_empty(stack)) {
+      Node* node = stack_pop(stack);
+      if (node) {
+        if (node->left) {
+          Edge edge = {
+            .start = node,
+            .goal = node->left,
+          };
+          arrput(edges, edge);
+          stack_push(stack, node->left);
+        }
+        if (node->right) {
+          Edge edge = {
+            .start = node,
+            .goal = node->left,
+          };
+          arrput(edges, edge);
+          stack_push(stack, node->right);
+        }
+      }
+    }
+  }
+  return edges;
+}
+
 EdgeCoords* get_edge_coords(Edge* edges, TreeMap* tree_map) {
   EdgeCoords* edge_coords = NULL;
   for (size_t i = 0; i < arrlen(edges); i++) {
